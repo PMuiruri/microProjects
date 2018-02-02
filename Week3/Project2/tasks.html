@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body onload ="calculations()">
+
+    <p>The line below this one should contain your name after button is pressed</p>
+    <p id ="yourname"></p>
+    <button onclick="yourName()">Try it</button>
+
+    <div id = "calling" style="margin-top: 50%">
+      <button onclick="callingFunctions()">Click me</button>
+    </div>
+
+    <script>
+
+      function yourName(){
+        //Set the p with id yourname to contain your names
+        document.getElementById("yourname").innerHTML="Hello! My name is Julie";
+        console.log
+
+      }
+
+
+      //Press F12 on browser to open the console!!!
+      function calculations(){
+        var x = 51;
+        var y = 14;
+
+        var z = x + y;
+        console.log(x + " and " + y + " equals " + z);
+
+        z = x - y;
+        console.log(x + " minus " + y + " equals " + z); //Finish this line
+
+        z= x * y;
+        //Calculate these lines
+        console.log(x + " times " + y + " equals "+ z);
+
+        z= x/y;
+        console.log(x + " divided by " + y + " equals "+ z);
+      }
+
+
+
+ //Finish yourName() and calculations() functions before moving on this function
+      function callingFunctions(){
+
+        changeBG();
+        console.log(divide(50, 25));
+        console.log(divide(16, 2));
+        console.log(divide(100, 20));
+      }
+
+      function changeBG(){
+        var hex1= Math.floor(Math.random());
+        var hex2 = Math.floor(Math.random(255));
+        var hex2 = Math.floor(Math.random(255));
+
+        console.log(hex1);
+        //document.body.style.backgroundColor= "#e59866";
+        // document.body.style.backgroundColor= rgb();
+
+      }
+
+      /*Modify this to return the result of divident/divisor
+      => (50, 25) returns 2, (16,2) returns 8, (100, 20) returns 5 */
+      function divide(divident, divisor){
+          var result = divident / divisor;
+          return result;
+      }
+
+    </script>
+  </body>
+</html>
