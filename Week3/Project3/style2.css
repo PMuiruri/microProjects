@@ -11,6 +11,7 @@ h1{
   margin:0;
 }
 .images{
+ 	/* background: url(rockpaper.gif) repeat; */
 	background: url(https://thumbs.gfycat.com/RegalAssuredGossamerwingedbutterfly-max-1mb.gif) repeat;
 	background-position: center;
 	background-size: contain;
@@ -50,13 +51,15 @@ select{
 	text-align: center;
 }
 .play >div{
+	justify-content: center;
+}
+.play >p{
+	border:5%;
 	border-style: solid;
 	border-color: #c54d34;
 	justify-content: center;
 }
-.play >p{
-	border:10px;
-	border-style: solid;
-	border-color: #c54d34;
-	justify-content: center;
+#winner{
+	text-decoration: underline;
+	color: red;
 }
