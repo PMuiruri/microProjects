@@ -45,15 +45,6 @@
       console.log("Fiat is now repaired.");
     };
 
-
-    // console.log(fiat.repair()); //Will repair the car.
-    //console.log(tesla.repair()); //Error: tesla.repair() is not a function
-
-    // console.log("The model of this car is " + tesla.model);
-    // console.log("The price of a Tesla is " + tesla.price);
-
-
-
 //TODO:
 
 /*  1. Complete the function "createNewCar". The function takes data that the user input (use the DOM) and creates a new car object with this data.
@@ -79,9 +70,8 @@
 
   // 3. Sort the array based on the price of each car so that the cheapest cars are first in the array
   // If you struggle to come up with a sorting algorithm by yourself, use Google to find examples of how to do sorting in JavaScript
-  sortArray(listOfCars);
 
-  function sortArray(array){
+  function sortArray(){
       listOfCars.sort(function(a, b){
       return a.price-b.price;
 })
