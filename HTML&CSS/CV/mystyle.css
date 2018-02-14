@@ -1,0 +1,77 @@
+/* My First CSS file */
+
+  h1{
+    margin: 8%;
+    text-align:center;
+  }
+  .navbar{
+    background-color: #1c776e;
+    width:100%;
+    position: fixed;
+    top: 0;
+    opacity: 0.8;
+    z-index: 9999;
+    margin-bottom: 10%;
+  }
+
+  .navbar a{
+      font-family: sans-serif;
+      color: white;
+      text-decoration: none;
+      padding: 6% 4%;
+    }
+    .navbar a:hover{
+        background-color: white;
+        color: #1c776e;
+    }
+  .borders{
+    margin: 0%;
+    border-style: groove;
+    padding: 2%;
+  }
+  h2,h3{
+    margin: 2%;
+    border-bottom-style: solid;
+    border-bottom-color: #1c776e;
+    padding: 1%;
+  }
+  p{
+    padding: 2%;
+    margin-left: 2%;
+  }
+  body {
+    background-color: #d8dfdc;
+    margin-left: 5%;
+    text-align: justify;
+    background: white;
+  }
+  .workExperience {
+    font-style: italic;
+    font-size: 1.2em;
+    margin-left: 2%;
+}
+p,h1,h2,li{
+  font-family: sans-serif;
+}
+.border{
+  margin: auto;
+  border:2%;
+  padding:10%;
+}
+.container {
+    width: 100%;
+    background-color:#1c776e ;
+  }
+  .skills{
+    text-align: right;
+    /**padding-right: 20%;*/
+    line-height: 160%;
+    color: white;
+}
+.html {width: 80%; background-color: #4CAF50; margin-bottom:2%;} /* Green */
+.javascript {width: 80%; background-color: #2196F3; margin-bottom: 2%} /* Blue */
+.Webdesgin {width: 65%; background-color: #f44336;margin-bottom: 2%} /* Red */
+.React {width: 60%; background-color: #808080;margin-bottom: 2%} /* Dark Grey */
+.photoshop{width: 90%; background-color: #4CAF50;margin-bottom: 2%;}
+.Lightroom{width: 90%; background-color:  #2196F3; margin-bottom: 2%}
+  }
