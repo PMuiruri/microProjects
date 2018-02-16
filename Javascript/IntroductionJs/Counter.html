@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Simple Js Counter</title>
+  </head>
+  <body>
+    <button type="button" onclick="countup()" onclick="resetColor()" onmousedown="changeOpacity()" onmouseup="resetOpacity()">Click me!</button>
+    <button type="button" onclick="reset()" onclick="resetColor()" onmousedown="changeOpacity()" onmouseup="resetOpacity()">Reset</button>
+    <div id="counter">0</div>
+
+    <script type="text/javascript">
+
+      var count=0;
+      var r = 255;
+      var g = 255;
+      var b = 255;
+      // count is a global variable it is seen by all functions
+
+      function countup(){
+        // This function increases the div element by one every time the user clicks the button
+
+        console.log ("Now the counter should increase by 1");
+        count++;
+        document.getElementById('counter').innerHTML=count;
+        //document.getElementById("counter").style.color = "blue";
+
+      }
+
+      function reset(){
+        // Resets the counter back to zero
+        count=0;
+        document.getElementById("counter").innerHTML=count;
+        // var r = Math.floor(Math.random() * 255);
+        // var g = Math.floor(Math.random() * 255);
+        // var b = Math.floor(Math.random() * 255);
+        // document.getElementById("counter").style.color = "rgb(" + r + "," + g + "," + b + ")";
+        //document.getElementById("counter").style.color = "red";
+      }
+
+      function changeOpacity(){
+        // This function changes the opacity of the counter when mouse is pressed down
+        document.getElementById("counter").style.opacity=0.2;
+
+      }
+
+      function resetOpacity(){
+        // This function returns the opacity to normal when the mouse is realesed
+        document.getElementById('counter').style.opacity =1;
+
+      }
+
+      // function changeColor() {
+      // var r = Math.floor(Math.random() * 255);
+      // var g = Math.floor(Math.random() * 255);
+      // var b = Math.floor(Math.random() * 255);
+      // document.getElementById("counter").style.background = "rgb(" + r + "," + g + "," + b + ")";
+      //document.getElementById("color_code").innerHTML = "Color code RGB: " + r + "  " + g +"  " + b;
+    // }
+
+    function resetColor(){
+    var r = 255;
+    var g = 255;
+    var b = 255;
+    document.getElementById("counter").style.Color = "rgb(" + r + "," + g + "," + b + ")";
+    //document.getElementById("color_code").innerHTML = "Color code RGB: " + r + " " + g +" " + b;
+    }
+
+
+       </script>
+  </body>
+
+</html>
