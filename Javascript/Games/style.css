@@ -1,0 +1,27 @@
+body {
+	background: black;
+	display: flex;
+	align-items: center;
+	height: 100%;
+  margin-top: 20%;
+}
+div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 25%;
+    flex:auto;
+    margin-top: 20%;
+    border-radius: 1em;
+	}
+
+#container{
+  align-items: center;
+  font-size: 10em;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: white;
+	text-shadow: 0 0 20px #ff0000;
+	/* border-style: groove;
+	border-color: #33bbff; */
+}
