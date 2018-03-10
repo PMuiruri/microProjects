@@ -1,0 +1,76 @@
+
+body {
+    font-family: 'Source Sans Pro';
+    background: green;
+    margin:0;
+    color:white;
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: 30% 30% 40%;
+}
+header {
+    display: inline-block;
+    background:#FFFFFF;
+    padding: 2em;
+}
+a {
+    text-decoration:none;
+    font-size:1.5em;
+    font-family: fantasy;
+}
+
+img {
+    width:10%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.game{
+    width: 30%;
+    margin: 0 auto;
+    padding: 30px;
+    display: inline-block;
+    border: solid 5px black;
+    justify-content: center;
+}
+.deck{
+  float: right;
+}
+.container {
+    display:inline-block;
+    /* grid-template-columns: 66% auto; */
+    /* padding: 40px; */
+    /* padding: 40px 100px 40px 100px; */
+    padding-left: 20%;
+    padding-right: 20%;
+    border: solid 2px red;
+    width: 80%;
+    justify-content: center;
+
+}
+/* .container > div{
+  display: inline-grid;
+  justify-content: center;
+  border: solid 0.5em white;
+  padding: 2%;
+  width: 30%
+} */
+
+.hand{
+    display: inline-block;
+    border: solid 0.5em white;
+    padding: 2%;
+    width: 30%;
+}
+.card{
+  display: inline-block;
+  /* border:  0.1em white; */
+  background: url(file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/image/card-back.png) no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-radius: 10px;
+  padding: 2%;
+  margin: 2%;
+  width: 120px;
+  height: 180px;
+}
