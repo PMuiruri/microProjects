@@ -1,4 +1,4 @@
-var mydeck =[];
+var mydeck=[];
 var randomizedDeck = [];
 var card;
 var listOfPlayers = [];
@@ -78,6 +78,7 @@ function Card(value, label, suit){
           }
           this.totalScore = this.totalScore + card3;
           console.log("new card "+ this.extraCard.label + " of "+ this.extraCard.suit + " new score "+ this.totalScore);
+          updateDeck();
           return this.totalScore;
         }
 
@@ -96,10 +97,6 @@ function Card(value, label, suit){
         listOfPlayers.push(player1);
         listOfPlayers.push(player2);
 
-
-
-        // console.table(listOfPlayers);
-
         for(let i = 0; i<=listOfPlayers.length-1; i++){
           console.log("Name: "+listOfPlayers[i].name);
           console.log("First card "+listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit);
@@ -110,17 +107,9 @@ function Card(value, label, suit){
           cardUI(y);
           cardUI(n);
         }
-
-        // playerUI();
-        // for(let i = 0; i<=listOfPlayers.length-1; i++){
-        //   console.log("Name: "+listOfPlayers[i].name);
-        //   y = listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit;
-        //   n = listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit;
-        //   cardUI(y,n);
-        //   console.log("total "+ listOfPlayers[i].totalScore);
-        // }
-
+        updateDeck();
       }
+
       function playerUI(){
         document.getElementById('players').innerHTML = '';
             for(var i = 0; i < listOfPlayers.length; i++)
@@ -138,8 +127,8 @@ function Card(value, label, suit){
                 document.getElementById('players').appendChild(div_player);
             }
       }
+
       function cardUI(y) {
-        // var y = "back";
         var z = ".png";
         var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/image/png/";
         var t = s.concat(y,z);
@@ -150,6 +139,7 @@ function Card(value, label, suit){
         x.setAttribute("alt", y);
         document.body.appendChild(x);
     }
+
       function hitMe(player){
         player.hit();
 
@@ -164,14 +154,8 @@ function Card(value, label, suit){
         else{
           return console.log("Hit or Stand???" );
         }
-        //  function checkScoreBust(player){
-        //    if(player.totalScore > 21){
-        //     return console.log("Game Busted "+ player.name +" wins " + player.totalScore);
-        //   }
-        //   else{
-        //     return;
-        //   }
       }
+
       function checkScoreWin(score){
         if(score === 21){
           return true;
@@ -214,3 +198,8 @@ function Card(value, label, suit){
           return console.log(player1.name+ " wins " +" score "+ player1.totalScore);
         }
       }
+
+      function updateDeck()
+       {
+           document.getElementById('deckcount').innerHTML = mydeck.length;
+       }
