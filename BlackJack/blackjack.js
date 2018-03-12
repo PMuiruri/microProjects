@@ -1,4 +1,4 @@
-var mydeck;
+var mydeck =[];
 var randomizedDeck = [];
 var card;
 var listOfPlayers = [];
@@ -87,21 +87,69 @@ function Card(value, label, suit){
       }
 
       function createPlayers(){
+        var y = "";
+        var n = "";
+
         player1 = new Player("Player ");
         player2 = new Player("Dealer ");
 
         listOfPlayers.push(player1);
         listOfPlayers.push(player2);
 
+
+
         // console.table(listOfPlayers);
 
         for(let i = 0; i<=listOfPlayers.length-1; i++){
           console.log("Name: "+listOfPlayers[i].name);
-          console.log("First card "+listOfPlayers[i].firstCard.label+ " of "+listOfPlayers[i].firstCard.suit);
-          console.log("Second card "+listOfPlayers[i].secondCard.label+ " of "+listOfPlayers[i].secondCard.suit);
+          console.log("First card "+listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit);
+          y = listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit;
+          console.log("Second card "+listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit);
+          n = listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit;
           console.log("total "+ listOfPlayers[i].totalScore);
+          cardUI(y);
+          cardUI(n);
         }
+
+        // playerUI();
+        // for(let i = 0; i<=listOfPlayers.length-1; i++){
+        //   console.log("Name: "+listOfPlayers[i].name);
+        //   y = listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit;
+        //   n = listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit;
+        //   cardUI(y,n);
+        //   console.log("total "+ listOfPlayers[i].totalScore);
+        // }
+
       }
+      function playerUI(){
+        document.getElementById('players').innerHTML = '';
+            for(var i = 0; i < listOfPlayers.length; i++)
+            {
+                var div_player = document.createElement('div');
+                var div_playerid = document.createElement('div');
+                var div_hand = document.createElement('div');
+                var div_handid = document.createElement('div')
+                var div_points = document.createElement('div');
+
+                div_playerid.innerHTML = listOfPlayers[i].name;
+                div_player.appendChild(div_playerid);
+                div_player.appendChild(div_hand);
+                div_player.appendChild(div_points);
+                document.getElementById('players').appendChild(div_player);
+            }
+      }
+      function cardUI(y) {
+        // var y = "back";
+        var z = ".png";
+        var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/image/png/";
+        var t = s.concat(y,z);
+        var x = document.createElement("IMG");
+        x.setAttribute("src", t);
+        x.setAttribute("width", "120");
+        x.setAttribute("height", "180");
+        x.setAttribute("alt", y);
+        document.body.appendChild(x);
+    }
       function hitMe(player){
         player.hit();
 
@@ -133,6 +181,8 @@ function Card(value, label, suit){
         }
       }
       function start(){
+        listOfPlayers.length = 0;
+        mydeck.length= 0;
         mydeck = new Deck();
         shuffle(mydeck);
         createPlayers();
@@ -148,8 +198,9 @@ function Card(value, label, suit){
           return console.log("Game Over");
         }
         else{
-          return decideWinner();
+            decideWinner();
         }
+        return
       }
 
       function decideWinner(){
