@@ -12,8 +12,8 @@
   </header>
   <div class="game">
           <input type="reset" class="btn" value="start Game" onclick="start()" />
-          <input type="button" class="btn" value="Hit" onclick="hitMe(player1)" />
-          <input type="button" class="btn" value="stand" onclick="stand()" />
+          <input type="button" class="btn" id="hit" value="Hit" onclick="player.hit(deck)" />
+          <input type="button" class="btn" id="stand" value="stand" onclick="dealerTurn()" />
           <div class="deck">
             <div id="deckcount">52</div>
             <div class="status" id="status"></div>
@@ -21,20 +21,17 @@
         </div>
   <div class="container">
     <div class="hand">
-      <div class="card" id="Pcard1">
-      <label>Player card 1</label></div>
-      <div class="card" id="Pcard2">
-      <label>Player card 1</label></div>
+      <div class="card" id="Fcard">player</div>
+      <div class="card" id="Scard"></div>
       <div id=Pscore>Player Score</div>
     </div>
     <div class="hand">
-      <div class="card" id="Pcard3">
-      <label>Dealer card 1</label></div>
-      <div class="card" id="Pcard4">
-      <label>Dealer card 1</label></div>
+      <div class="card" id="Pcard3"></div>
+      <div class="card" id="Pcard4"></div>
       <div id=Dscore>Dealer Score</div>
     </div>
   </div>
+  <script src="blackjack2.js"></script>
 </body>
 </html>
 </body>
