@@ -7,199 +7,221 @@ var player2;
 var score;
 
 function Card(value, label, suit){
-  this.value = value;
-  this.label = label;
-  this.suit = suit;
+this.value = value;
+this.label = label;
+this.suit = suit;
+}
 
-  this.getCardValue = function(){
-    let cardValue = parseInt(this.value);
-    if (cardValue > 10) {
-      return 10;}
-      else {
-        return cardValue;}
-      }
-    }
-
-    function Deck(){
-      var cards = [];
-      this.label = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-      this.suits = ['Hearts','Diamonds','Spades','Clubs'];
-
-      for( var s = 0; s < this.suits.length; s++ ) {
+function Deck(){
+    var cards = [];
+    this.label = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    this.suits = ['Hearts','Diamonds','Spades','Clubs'];
+    for( var s = 0; s < this.suits.length; s++ ) {
         for( var n = 0; n < this.label.length; n++ ) {
-          cards.push( new Card( n+1, this.label[n], this.suits[s] ) );
+            if (n > 9){
+                cards.push(new Card(10, this.label[n], this.suits[s]));
+            }else{
+                cards.push(new Card(n+1, this.label[n], this.suits[s]));
+            }
         }
-      }
+    }
+    return cards;
+}
 
-      return cards;
+// Function that shuffles the cards using fisher-yates random
+function shuffle(array) {
+  var m = array.length, t, i;
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  console.table(array);
+  return array;
+}
+// function that removes the top card from the deck
+function drawcard(){
+        if (mydeck.length > 0){
+            return mydeck.pop();
+        }else{
+            console.log("The deck could be empty, length: " + adeck.length);
+        }
     }
 
-    // Function that shuffles the cards using fisher-yates random
-    function shuffle(array) {
-      var m = array.length, t, i;
-      // While there remain elements to shuffle…
-      while (m) {
+// Function to create a hand
+function Player(myname, card1, card2) {
+    card1.value = card1.value == 1? 11 : card1.value;
+    card2.value = ((card1.value < 11) && (card2.value == 1))? 11 : card2.value;
+    this.name = myname;
+    this.firstCard = card1;
+    this.secondCard = card2;
+    this.extraCard = null;
 
-        // Pick a remaining element…
-        i = Math.floor(Math.random() * m--);
+  if((this.firstCard.value + this.secondCard.value) == 21){
+      document.getElementById("hit").disabled = true;
+      document.getElementById("stand").disabled = true;
+      this.totalScore = this.firstCard.value + this.secondCard.value;
+      console.log("Game Over at first draw");
+  }else{
+      this.totalScore = this.firstCard.value + this.secondCard.value;
+  }
 
-        // And swap it with the current element.
-        t = array[m];
-        array[m] = array[i];
-        array[i] = t;
-      }
-      console.table(array);
-      return array;
-    }
-    // function that removes the top card from the deck
-    function drawcard(){
-      // let index = cards.length-1;
-      // return cards.splice(index, 1);
-      return mydeck.pop();
-    }
-
-    // Function to create a hand
-    function Player(name) {
-      this.name = name;
-      this.firstCard = drawcard();
-      this.secondCard = drawcard();
-      this.totalScore = this.firstCard.getCardValue() + this.secondCard.getCardValue();
-      this.extraCard = "";
-
-      this.hit = function(){
+    this.hit = function(){
         this.extraCard = drawcard();
-        var card3 = this.extraCard.getCardValue();
-        if(card3 === 1){
-          if(this.totalScore > 10){
-            card3 = 1;}
+        if(this.extraCard.value == 1){
+            if(this.totalScore < 11){
+                this.extraCard.value = 11;
+            }
+        }
+        this.totalScore = this.totalScore + this.extraCard.value;
+        console.log("New card: " + this.extraCard.value + " Total Score: " + this.totalScore);
+
+        if(this.isbust()){
+            console.log("Bust: "+ this.name + " Went Bust");
+            document.getElementById("hit").disabled = true;
+            document.getElementById("stand").disabled = true;
+        }
+        else if(this.isWin()){
+            console.log("Game Over: " + this.name + " Won");
+            document.getElementById("hit").disabled = true;
+            document.getElementById("stand").disabled = true;
+        }
+      }
+
+        this.getValue = function(card){
+          if (card.value == 1){
+            if(this.totalScore > 10){
+              return 11;}
+            }
             else{
-              card3 = 11;
-            }
+              return card.value;
           }
-          this.totalScore = this.totalScore + card3;
-          console.log("new card "+ this.extraCard.label + " of "+ this.extraCard.suit + " new score "+ this.totalScore);
-          updateDeck();
-          return this.totalScore;
         }
 
-        this.getTotalScore = function(){
-          return this.totalScore;
+    this.isbust = function(){
+        if(this.totalScore > 21){
+          document.getElementById("stand").disabled = true;
+            return true;
         }
-      }
-
-      function createPlayers(){
-        var y = "";
-        var n = "";
-
-        player1 = new Player("Player ");
-        player2 = new Player("Dealer ");
-
-        listOfPlayers.push(player1);
-        listOfPlayers.push(player2);
-
-        for(let i = 0; i<=listOfPlayers.length-1; i++){
-          console.log("Name: "+listOfPlayers[i].name);
-          console.log("First card "+listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit);
-          y = listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit;
-          console.log("Second card "+listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit);
-          n = listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit;
-          console.log("total "+ listOfPlayers[i].totalScore);
-          cardUI(y);
-          cardUI(n);
+        else{
+            return false;
         }
-        updateDeck();
-      }
-
-      function playerUI(){
-        document.getElementById('players').innerHTML = '';
-            for(var i = 0; i < listOfPlayers.length; i++)
-            {
-                var div_player = document.createElement('div');
-                var div_playerid = document.createElement('div');
-                var div_hand = document.createElement('div');
-                var div_handid = document.createElement('div')
-                var div_points = document.createElement('div');
-
-                div_playerid.innerHTML = listOfPlayers[i].name;
-                div_player.appendChild(div_playerid);
-                div_player.appendChild(div_hand);
-                div_player.appendChild(div_points);
-                document.getElementById('players').appendChild(div_player);
-            }
-      }
-
-      function cardUI(y) {
-        var z = ".png";
-        var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/image/png/";
-        var t = s.concat(y,z);
-        var x = document.createElement("IMG");
-        x.setAttribute("src", t);
-        x.setAttribute("width", "120");
-        x.setAttribute("height", "180");
-        x.setAttribute("alt", y);
-        document.body.appendChild(x);
     }
 
-      function hitMe(player){
-        player.hit();
-
-        if(player.getTotalScore() > 21){
-          return console.log("Game Busted "+ player.name +" Loses " + player.totalScore);
-        }
-        else if(player.totalScore === 21){
-          if(checkScoreWin(player.totalScore) == true){
-            return console.log("Game over " + player.name + " wins");
-          }
+    this.isWin = function(){
+        if(this.totalScore == 21){
+            return true;
         }
         else{
-          return console.log("Hit or Stand???" );
+            return false;
         }
-      }
+    }
+}
 
-      function checkScoreWin(score){
-        if(score === 21){
-          return true;
-        }
-        else{
-          return;
-        }
-      }
-      function start(){
-        listOfPlayers.length = 0;
-        mydeck.length= 0;
-        mydeck = new Deck();
-        shuffle(mydeck);
-        createPlayers();
-      }
 
-      function stand(){
-        // First check if dealer's hand === 21
-        while (player2.getTotalScore() < 17 ){
-          hitMe(player2);
-        }
+  function cardUI(y) {
+    var z = ".png";
+    var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/image/png/";
+    var t = s.concat(y,z);
+    var x = document.createElement("IMG");
+    x.src = t;
+    x.setAttribute("width", "120");
+    x.setAttribute("height", "180");
+    x.setAttribute("alt", y);
+    // document.getElementById('Pcard1').appendChild(x);
+    document.body.appendChild(x);
+  }
 
-        if(player2.getTotalScore > 21){
-          return console.log("Game Over");
-        }
-        else{
-            decideWinner();
-        }
-        return
-      }
+  function hitMe(player){
+    player.hit();
 
-      function decideWinner(){
-        if(player2.totalScore === player1.totalScore){
-          return console.log("Draw");
-        }
-        else if(player2.totalScore > player1.totalScore && player2.totalScore < 22){
-          return console.log(player2.name +" wins "+ " score " +player2.totalScore);
-        }
-        else if(player2.totalScore < player1.totalScore && player1.totalScore < 22){
-          return console.log(player1.name+ " wins " +" score "+ player1.totalScore);
-        }
-      }
+    // if(player.totalScore > 21){
+    //   return console.log("Game Busted "+ player.name +" Loses " + player.totalScore);
+    // }
+    // else if(player.totalScore === 21){
+    //   if(checkScoreWin(player.totalScore) == true){
+    //     return console.log("Game over " + player.name + " wins");
+    //   }
+    // }
+    // else{
+    //   return console.log("Hit or Stand???" );
+    // }
+  }
+  //
+  // function checkScoreWin(score){
+  //   if(score === 21){
+  //     return true;
+  //   }
+  //   else{
+  //     return;
+  //   }
+  // }
 
-      function updateDeck()
-       {
-           document.getElementById('deckcount').innerHTML = mydeck.length;
-       }
+  function createPlayers(){
+    document.getElementById("hit").disabled = false;
+    document.getElementById("stand").disabled = false;
+   var y = "";
+   var n = "";
+
+   player1 = new Player("Player ", drawcard(), drawcard());
+   player2 = new Player("Dealer ", drawcard(), drawcard());
+
+   listOfPlayers.push(player1);
+   listOfPlayers.push(player2);
+
+   for(let i = 0; i<=listOfPlayers.length-1; i++){
+     console.log("Name: "+listOfPlayers[i].name);
+     console.log("First card "+listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit);
+     y = listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit;
+     console.log("Second card "+listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit);
+     n = listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit;
+     console.log("total "+ listOfPlayers[i].totalScore);
+     cardUI(y);
+     cardUI(n);
+   }
+
+   updateDeck();
+}
+
+  function start(){
+    console.clear();
+    listOfPlayers.length = 0;
+    mydeck.length= 0;
+    mydeck = new Deck();
+    shuffle(mydeck);
+    createPlayers();
+  }
+
+  function stand(){
+    // First check if dealer's hand === 21
+    while (player2.totalScore < 17 ){
+      hitMe(player2);
+    }
+      decideWinner();
+  }
+
+  function decideWinner(){
+    if((player1.totalScore > 21) || (player2.totalScore > 21)){
+      return console.log("Game Over");
+    }
+    if(player1.totalScore === player2.totalScore){
+      return console.log("Draw");
+    }
+    else if(player1.totalScore > player2.totalScore){
+      return console.log(player1.name +" wins "+ " score " +player1.totalScore);
+    }
+    else if(player2.totalScore > player1.totalScore){
+      return console.log(player2.name+ " wins " +" score "+ player2.totalScore);
+    }
+  }
+
+  function updateDeck()
+  {
+    document.getElementById('deckcount').innerHTML = mydeck.length;
+  }
