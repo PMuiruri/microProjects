@@ -56,6 +56,7 @@ function drawcard(){
 
 // Function to create a hand
 function Player(myname, card1, card2) {
+
     card1.value = card1.value == 1? 11 : card1.value;
     card2.value = ((card1.value < 11) && (card2.value == 1))? 11 : card2.value;
     this.name = myname;
@@ -67,6 +68,7 @@ function Player(myname, card1, card2) {
       document.getElementById("hit").disabled = true;
       document.getElementById("stand").disabled = true;
       this.totalScore = this.firstCard.value + this.secondCard.value;
+      document.getElementById('result').innerHTML= this.name + " Gets Black Jack Game Over at first draw";
       console.log("Game Over at first draw");
   }else{
       this.totalScore = this.firstCard.value + this.secondCard.value;
@@ -80,18 +82,22 @@ function Player(myname, card1, card2) {
             }
         }
         this.totalScore = this.totalScore + this.extraCard.value;
-        console.log("New card: " + this.extraCard.value + " Total Score: " + this.totalScore);
+        console.log("New card: " + this.extraCard.value +"_Of_"+this.extraCard.suit + " Total Score: " + this.totalScore);
+
 
         if(this.isbust()){
+            document.getElementById('result').innerHTML="Bust: "+ this.name + " Went Bust";
             console.log("Bust: "+ this.name + " Went Bust");
             document.getElementById("hit").disabled = true;
             document.getElementById("stand").disabled = true;
         }
         else if(this.isWin()){
+            document.getElementById('result').innerHTML= "Game Over Black Jack: " + this.name + " Won";
             console.log("Game Over: " + this.name + " Won");
             document.getElementById("hit").disabled = true;
             document.getElementById("stand").disabled = true;
         }
+        return this.extracard;
       }
 
         this.getValue = function(card){
@@ -127,47 +133,33 @@ function Player(myname, card1, card2) {
 
   function cardUI(y) {
     var z = ".png";
-    var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/image/png/";
+    var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/cards/image/png/";
     var t = s.concat(y,z);
     var x = document.createElement("IMG");
     x.src = t;
     x.setAttribute("width", "120");
     x.setAttribute("height", "180");
     x.setAttribute("alt", y);
-    // document.getElementById('Pcard1').appendChild(x);
-    document.body.appendChild(x);
+    return x;
   }
 
   function hitMe(player){
+    var p1="";
     player.hit();
-
-    // if(player.totalScore > 21){
-    //   return console.log("Game Busted "+ player.name +" Loses " + player.totalScore);
-    // }
-    // else if(player.totalScore === 21){
-    //   if(checkScoreWin(player.totalScore) == true){
-    //     return console.log("Game over " + player.name + " wins");
-    //   }
-    // }
-    // else{
-    //   return console.log("Hit or Stand???" );
-    // }
+    p1= player.extraCard.label +"_of_"+ player.extraCard.suit;
+    document.getElementById('player').appendChild(cardUI(p1));
+    document.getElementById('Pscore').innerHTML= player1.totalScore;
+    updateDeck();
   }
-  //
-  // function checkScoreWin(score){
-  //   if(score === 21){
-  //     return true;
-  //   }
-  //   else{
-  //     return;
-  //   }
-  // }
 
   function createPlayers(){
+    // window.location.reload();
     document.getElementById("hit").disabled = false;
     document.getElementById("stand").disabled = false;
-   var y = "";
-   var n = "";
+   var p1 = "";
+   var p2 = "";
+   var d1 = "";
+   var d1="";
 
    player1 = new Player("Player ", drawcard(), drawcard());
    player2 = new Player("Dealer ", drawcard(), drawcard());
@@ -175,21 +167,34 @@ function Player(myname, card1, card2) {
    listOfPlayers.push(player1);
    listOfPlayers.push(player2);
 
-   for(let i = 0; i<=listOfPlayers.length-1; i++){
-     console.log("Name: "+listOfPlayers[i].name);
-     console.log("First card "+listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit);
-     y = listOfPlayers[i].firstCard.label+ "_of_"+listOfPlayers[i].firstCard.suit;
-     console.log("Second card "+listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit);
-     n = listOfPlayers[i].secondCard.label+ "_of_"+listOfPlayers[i].secondCard.suit;
-     console.log("total "+ listOfPlayers[i].totalScore);
-     cardUI(y);
-     cardUI(n);
-   }
+
+     console.log("Name: "+player1.name);
+     console.log("First card "+player1.firstCard.label+ "_of_"+player1.firstCard.suit);
+     p1 = player1.firstCard.label+ "_of_"+player1.firstCard.suit;
+     console.log("Second card "+player1.secondCard.label+ "_of_"+player1.secondCard.suit);
+     p2 = player1.secondCard.label+ "_of_"+player1.secondCard.suit;
+     console.log("total "+ player1.totalScore);
+     document.getElementById('player').appendChild(cardUI(p1));
+     document.getElementById('player').appendChild(cardUI(p2));
+     document.getElementById('Pscore').innerHTML= player1.totalScore;
+
+     console.log("Name: "+player2.name);
+     console.log("First card "+player2.firstCard.label+ "_of_"+player2.firstCard.suit);
+     d1 = player2.firstCard.label+ "_of_"+player2.firstCard.suit;
+     console.log("Second card "+player1.secondCard.label+ "_of_"+player2.secondCard.suit);
+     d2 = player2.secondCard.label+ "_of_"+player2.secondCard.suit;
+     console.log("total "+ player2.totalScore);
+     document.getElementById('dealer').appendChild(cardUI(d1));
+     document.getElementById('dealer').appendChild(cardUI(d2));
+     document.getElementById('Dscore').innerHTML= player2.totalScore;
 
    updateDeck();
 }
 
   function start(){
+    document.getElementById('player').innerHTML="";
+    document.getElementById('dealer').innerHTML="";
+    document.getElementById('result').innerHTML="";
     console.clear();
     listOfPlayers.length = 0;
     mydeck.length= 0;
@@ -199,9 +204,15 @@ function Player(myname, card1, card2) {
   }
 
   function stand(){
+    var p1="";
+    document.getElementById("hit").disabled = true;
+    document.getElementById("stand").disabled = true;
     // First check if dealer's hand === 21
     while (player2.totalScore < 17 ){
-      hitMe(player2);
+      player2.hit();
+      p1= player2.extraCard.label +"_of_"+ player2.extraCard.suit;
+      document.getElementById('dealer').appendChild(cardUI(p1));
+      document.getElementById('Dscore').innerHTML= player2.totalScore;
     }
       decideWinner();
   }
@@ -211,12 +222,15 @@ function Player(myname, card1, card2) {
       return console.log("Game Over");
     }
     if(player1.totalScore === player2.totalScore){
+      document.getElementById('result').innerHTML= "Draw";
       return console.log("Draw");
     }
     else if(player1.totalScore > player2.totalScore){
+      document.getElementById('result').innerHTML= player1.name +" wins "+ " score " +player1.totalScore;
       return console.log(player1.name +" wins "+ " score " +player1.totalScore);
     }
     else if(player2.totalScore > player1.totalScore){
+      document.getElementById('result').innerHTML= player2.name+ " wins " +" score "+ player2.totalScore;
       return console.log(player2.name+ " wins " +" score "+ player2.totalScore);
     }
   }

@@ -9,28 +9,23 @@
   <div class="image"></div>
   <div class="game">
           <h1>Blackjack</h1>
-          <input type="reset" class="btn" value="start Game" onclick="start()" />
-          <input type="button" id="hit" class="btn" value="Hit" onclick="hitMe(player1)" />
-          <input type="button" id="stand" class="btn" value="stand" onclick="stand()" />
+          <input type="reset" class="btn" value="start Game" onclick="start()" ></input>
+          <input type="button" id="hit" class="btn" value="Hit" onclick="hitMe(player1)" ></input>
+          <input type="button" id="stand" class="btn" value="stand" onclick="stand()" ></input>
           <div class="deck">
             <div id="deckcount">52</div>
-            <div class="status" id="status"></div>
+          <div class="status" id="status"></div>
+            <div id="result"></div>
           </div>
         </div>
-          <div id="players" class="players">play
+          <div id="players" class="players">
             <div id="player"></div>
-              <div class="hand">
-                <div class="card">
-                <div id="Pcard1">card 1</div>
-                <div class="card" id="Pcard2"></div>
                 <div id=Pscore>Player Score</div>
               </div>
             <div id="dealer"></div>
-            <div class="hand">
-              <div class="card" id="Pcard3"></div>
-              <div class="card" id="Pcard4"></div>
-              <div id=Dscore>Dealer Score</div>
+             <div id=Dscore>Dealer Score</div>
             </div>
+            <div></div>
           </div>
 
           <!-- <div id="deck" class="deck">
