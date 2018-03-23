@@ -4,35 +4,32 @@
   <meta charset="utf-8">
   <title>Black Jack Game </title>
   <link rel='stylesheet' type="text/css" href="blackjack.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
 </head>
 <body>
   <div class="image"></div>
   <div class="game">
-          <h1>Blackjack</h1>
+          <h1>BLACK JACK</h1>
           <input type="reset" class="btn" value="start Game" onclick="start()" ></input>
           <input type="button" id="hit" class="btn" value="Hit" onclick="hitMe(player1)" ></input>
           <input type="button" id="stand" class="btn" value="stand" onclick="stand()" ></input>
-          <div class="deck">
-            <div id="deckcount">52</div>
-          <div class="status" id="status"></div>
-            <div id="result"></div>
-          </div>
         </div>
-          <div id="players" class="players">
+          <div class="deck">
+            <div class="status" id="deckcount">52</div>
+          <div class="status" id="result"></div>
+          </div>
+
+          <div class="players">
+            <div class="score" id=Pscore>Player Score :</div>
             <div id="player"></div>
-                <div id=Pscore>Player Score</div>
               </div>
+              <div class="players">
+                <div class="score" id=Dscore>Dealer Score :</div>
             <div id="dealer"></div>
-             <div id=Dscore>Dealer Score</div>
+             <!-- <div class="score" id=Dscore>Dealer Score</div> -->
             </div>
             <div></div>
           </div>
-
-          <!-- <div id="deck" class="deck">
-              <div class="card" id="deckcount">52</div>
-              <div class="status" id="status"></div>
-          </div> -->
-
   <script src="blackjack.js"></script>
 </body>
 </html>

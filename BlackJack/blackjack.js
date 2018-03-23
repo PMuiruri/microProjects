@@ -15,7 +15,7 @@ this.suit = suit;
 function Deck(){
     var cards = [];
     this.label = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    this.suits = ['Hearts','Diamonds','Spades','Clubs'];
+    this.suits = ['hearts','diamonds','spades','clubs'];
     for( var s = 0; s < this.suits.length; s++ ) {
         for( var n = 0; n < this.label.length; n++ ) {
             if (n > 9){
@@ -69,7 +69,7 @@ function Player(myname, card1, card2) {
       document.getElementById("stand").disabled = true;
       this.totalScore = this.firstCard.value + this.secondCard.value;
       document.getElementById('result').innerHTML= this.name + " Gets Black Jack Game Over at first draw";
-      console.log("Game Over at first draw");
+      console.log("Game Over");
   }else{
       this.totalScore = this.firstCard.value + this.secondCard.value;
   }
@@ -133,12 +133,18 @@ function Player(myname, card1, card2) {
 
   function cardUI(y) {
     var z = ".png";
-    var s = "file:///C:/Users/s1800083/Desktop/Kazi/Javascript/BlackJack/cards/image/png/";
+    var s = "http://opiskelu.businesscollege.fi/s1800083/BlackJack/cards/image/png/";
     var t = s.concat(y,z);
     var x = document.createElement("IMG");
     x.src = t;
+    console.log(t);
     x.setAttribute("width", "120");
     x.setAttribute("height", "180");
+    x.setAttribute("border", " 5px solid black");
+    x.setAttribute("padding", "5%");
+    x.setAttribute("margin-right", "50px");
+    x.setAttribute("margin-left", "20px");
+    x.setAttribute("border-radius", "10px");
     x.setAttribute("alt", y);
     return x;
   }
@@ -148,7 +154,7 @@ function Player(myname, card1, card2) {
     player.hit();
     p1= player.extraCard.label +"_of_"+ player.extraCard.suit;
     document.getElementById('player').appendChild(cardUI(p1));
-    document.getElementById('Pscore').innerHTML= player1.totalScore;
+    document.getElementById('Pscore').innerHTML= "Dealer Score: "+ player1.totalScore;
     updateDeck();
   }
 
@@ -176,7 +182,7 @@ function Player(myname, card1, card2) {
      console.log("total "+ player1.totalScore);
      document.getElementById('player').appendChild(cardUI(p1));
      document.getElementById('player').appendChild(cardUI(p2));
-     document.getElementById('Pscore').innerHTML= player1.totalScore;
+     document.getElementById('Pscore').innerHTML= "Player Score: "+player1.totalScore;
 
      console.log("Name: "+player2.name);
      console.log("First card "+player2.firstCard.label+ "_of_"+player2.firstCard.suit);
@@ -186,7 +192,7 @@ function Player(myname, card1, card2) {
      console.log("total "+ player2.totalScore);
      document.getElementById('dealer').appendChild(cardUI(d1));
      document.getElementById('dealer').appendChild(cardUI(d2));
-     document.getElementById('Dscore').innerHTML= player2.totalScore;
+     document.getElementById('Dscore').innerHTML= "Dealer Score: "+player2.totalScore;
 
    updateDeck();
 }
@@ -212,7 +218,7 @@ function Player(myname, card1, card2) {
       player2.hit();
       p1= player2.extraCard.label +"_of_"+ player2.extraCard.suit;
       document.getElementById('dealer').appendChild(cardUI(p1));
-      document.getElementById('Dscore').innerHTML= player2.totalScore;
+      document.getElementById('Dscore').innerHTML= "Dealer Score: "+player2.totalScore;
     }
       decideWinner();
   }
@@ -223,15 +229,15 @@ function Player(myname, card1, card2) {
     }
     if(player1.totalScore === player2.totalScore){
       document.getElementById('result').innerHTML= "Draw";
-      return console.log("Draw");
+      return console.log("Player and Dealer Draw score: Player" +player1.totalScore +" Dealer score: "+player2.totalScore);
     }
     else if(player1.totalScore > player2.totalScore){
       document.getElementById('result').innerHTML= player1.name +" wins "+ " score " +player1.totalScore;
-      return console.log(player1.name +" wins "+ " score " +player1.totalScore);
+      return console.log(player1.name +" wins score: " +player1.totalScore+" against Dealer Score: "+ player2.totalScore);
     }
     else if(player2.totalScore > player1.totalScore){
       document.getElementById('result').innerHTML= player2.name+ " wins " +" score "+ player2.totalScore;
-      return console.log(player2.name+ " wins " +" score "+ player2.totalScore);
+      return console.log(player2.name+ " wins score: "+ player2.totalScore +" against Player Score: "+ player1.totalScore);
     }
   }
 
