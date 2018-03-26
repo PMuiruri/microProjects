@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ellie's BookStore</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <p>Welcome to Ellie'e BookStore</p>
+    <!-- action defines where the data collected from the form should be sent -->
+    <!-- method defines which HTTP method is used to send data (ie get or post) -->
+    <form action="/my-handling-form-page" method="post">
+      <div>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="user_name">
+    </div>
+    <div>
+      <label for ="price">Item Price</label>
+      <input type="text" id="price"></input>
+    </div>
+    <div>
+        <label for="qty">Quantity:</label>
+        <input type="number" min=0 id="price"></input>
+    </div>
+    <div class="button" id="addNew">
+      <button type="button">Add New</button>
+    </div>
+  </div>
+  <div class="button" id="checkout">
+    <button type="button">Check Out</button>
+  </div>
+    </form>
+    <br><br>
+    <p>Your order : </p>
+    <p>Amount : </p>
+    <p>Total Price including Tax : </p>
+    <div id="order"></div>
+    <div id="subTotal"></div>
+    <div id='Total'></div>
+  </body>
+</html>
