@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset="utf-8">
+    <meta name="author" content="Your Name">
+	<meta name="description" content="Description of the page: e.g. My first HTML excercice.">
+	<link rel='stylesheet' type="text/css" href="style.css">
+</head>
+
+<body>
+	<h1> Car List </h1>
+	<div class="head">
+		<div class= image></div>
+	<div class='main'>
+		<p> Please Enter Car Details </p>
+		<!-- Input car details  -->
+		<div class="car">
+  		<label for ="license-plate">License Plate</label>
+  		<input type="text" id="license-plate"></input>
+	  	<label for = "manufacturer">Car Maker</label>
+	  	<input type="text" id="manufacturer"></input>
+	  	<label for = "model">Car Model</label>
+	  	<input type="text" id="model"></input>
+	  	<label for ="price">Price</label>
+	  	<input type="text" id="price"></input>
+	  	<label for ="paint">Color</label>
+	  	<input type ="color" id="paint" value ="#ff2800">
+		</div>
+		<!-- Buttons to manipulate car details -->
+		<div class='choice'>
+			<input type="button" value="Generate Table" onclick="generateTable()" />
+		  <hr />
+		  <div id="dvTable">
+		  </div>
+			<!-- <div id='new'><button  onclick="createNewCar()">Add a new car</button></div> -->
+			<!-- <div id='new'><button  onclick="generateTable()">Add a new car</button></div> -->
+			<div id='sort' ><button type = "button" onclick="sortArray()">Sort Cars by Price</button></div>
+			<div id='search'><button type="button" onclick="searchFromArray()" label = "Start a selected car" style ="margin-top: 3em;">Search for a car</search></div>
+		</div>
+		<!--Section for table output  -->
+		<!-- <input type="button" value="Generate Table" onclick="generateTable()" /> -->
+	  <hr />
+	  <div id="dvTable">
+	  </div>
+	<!--Input Customer Details -->
+	<div class="customer">
+		<label for ="cust-name">Customer's Name</label>
+		<input type="text" id="cust-name"></input>
+		<label for = "cust-age">Customer's Age</label>
+		<input type="text" id="cust-age"></input>
+		<label for = "cust-income">Customer's Income</label>
+		<input type="text" id="cust-income"></input>
+	</div>
+	<div id='new-cust'><button  onclick="addNewCustomer()">Add a new Customer</button></div>
+	<br>='buy'><button  onclick="buyCar()">Buy a car</button></div>
+</div>
+ 	<script src = "objects.js">
+	</script>
+</body>
+</html>
