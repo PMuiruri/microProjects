@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSS Practice</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+<section class="info-box">
+  <ul>
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <div class="panels">
+    <article class="active-panel">
+      <h2>LogIn</h2>
+      <form class="login">
+      <div class="img" style="margin-left: 15%;">
+      <img src="https://avatarfiles.alphacoders.com/115/115265.png" alt="Avatar" class="avatar">
+      </div>
+      <input type="text" id="user" placeholder="Enter Username" name="user" required></input>
+      <input type="password" id="psw" placeholder="Enter Password" name="psw" required></input>
+      <button type="submit" onclick="login()">Login</button>
+      <div class="container">
+        <span><a href="#"> Forgot your Password?</a></span>
+
+        <label><input type="checkbox" checked="checked" name="remember"> Remember me</label>
+      </div>
+    </form>
+    </article>
+    <article id="article2">
+      <h2>Gallery</h2>
+      <div id="masonry">
+      <img src="https://images.pexels.com/photos/100656/pexels-photo-100656.jpeg?auto=compress&cs=tinysrgb&h=350" alt="car1">
+      <img src="https://images.pexels.com/photos/241316/pexels-photo-241316.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="car2">
+      <img src="https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="car3">
+      <img src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="car4">
+      <img src="https://images.pexels.com/photos/225841/pexels-photo-225841.jpeg?auto=compress&cs=tinysrgb&h=350" alt="car5">
+      <img src="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="car6">
+    </div>
+    </article>
+    <article id="article3">
+    <p> car details <p>
+    </article>
+
+    <article id="article4">
+    <h2>Contact Us</h2>
+    <div class="img" style= "margin-left: 20%; margin-top: 10%;">
+    <img src="http://just-between-friends.com/wp-content/uploads/2013/01/under-construction-1024x256.png" alt="Site under construction" class="img">
+    </div>
+    <p>This tab includes a form to contact us</p>
+  </article>
+  <article>
+  </div>
+</section>
+
+<script src="tabs.js"> </script>
+
+</body>
+</html>
