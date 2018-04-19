@@ -84,9 +84,15 @@
 
   function deleteTable(){
     console.log(listOfCars.length-1);
-    document.getElementById("table").deleteRow(listOfCars.length-1);
-    document.getElementById("table").appendChild(tbody);
-    listOfCars.pop();
+    if(listOfCars.length > 0){
+      document.getElementById("table").deleteRow(-1);
+      document.getElementById("table").appendChild(tbody);
+      listOfCars.pop();
+    }
+      else{
+        alert('There are no more cars');
+      }
+
     console.log(listOfCars.length-1);
   }
 
@@ -99,6 +105,8 @@
       return a.price-b.price;
     })
     console.table(listOfCars);
+    document.getElementById("table").innerHTML = "";
+    createTable();
   }
 
   // 4. Create a function that allows the user to search for a specific car based on a license plate.
