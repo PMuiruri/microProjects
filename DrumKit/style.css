@@ -48,3 +48,14 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+@media screen and (max-width: 650px) {
+  .keys {
+		margin-left: 8em;
+		width: 40%;
+    display: grid;
+		display: grid;
+    grid-gap: 50px;
+    grid-template-columns: 100px 100px;
+  }
+}
