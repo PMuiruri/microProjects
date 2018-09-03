@@ -1,0 +1,40 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+  <div id='title'><h1> Number Guessing Game</h1></div>
+  <div id='rules'>
+    <h3>Rules of The game</h3>
+    <p>The computer selects a random number between 1 and 100.</p>
+    <p>Try and guess which number it has selected</p>
+    <!-- <p> You will get three chances. </p>-->
+    <p>Each time you guess we will tell you if your guess was too high or too low.</p>
+  </div>
+  <div id='guess'>
+    <label>Guess A Number between 1 and 100</label>
+    <input id='number' type='text' placeholder="Guess A Number"></input>
+  </div>
+  <div id='game'>
+    <button id='play' onclick="getGuess()" class="button">Play</button>
+    <button id='restart' onclick="restartGame()" class="button">Restart</button>
+
+		<div id="bar">
+			<div id="up"></div>
+			<div id="low"></div>
+		</div>
+
+		<div id="upper"></div>
+		<div id="lower"></div>
+		<div id='result'></div>
+
+		<div>
+			<ul id="list"></ul>
+		</div>
+
+  </div>
+	<script src="guessingGame.js"></script>
+</body>
+</html>
