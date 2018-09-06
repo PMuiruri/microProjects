@@ -1,5 +1,8 @@
 "use strict";
 let level=1;
+let q = [];
+let count = 0;
+let score= 0;
 document.getElementById("level").innerText=level;
 // assign button elements in the array
 var buttons = [
@@ -20,7 +23,7 @@ var current = 0;
 // pick the first active button in 1500ms, after that every 1000ms
 // 1500 is a parameter for setTimeout
 // 1000 is a parameter for aktivoiSeuraava
-var timer = setTimeout(pickNext, 1500, 2000);
+var timer = setTimeout(pickNext, 1600, 1600);
 
 // function to keep the engine going: pick a new button and set timer for the next pick
 // TODO: add game logic
@@ -37,18 +40,17 @@ function pickNext(delay)  {
 
   // set timer to pick the next button
   // TODO: make the pace increase steadily!
-	let delays = delay;
 
 		if(count>5){
 			level++;
-			delays = delay-200;
+			delay = delay-200;
 			count= 0;
-			console.log("delay: "+delays);
+			console.log("delay: "+delay);
 			document.getElementById("level").innerText =level;
 		}
 
   console.log("Active:", current);
-  timer = setTimeout(pickNext, delay, delays);
+  timer = setTimeout(pickNext, delay, delay);
 
   function pickNew(previous) {
     // This is just to demonstrate how the engine works
@@ -63,18 +65,17 @@ function pickNext(delay)  {
 
 		console.log("count: "+count);
 		console.log(q);
-		if(q.length > 9){
-			gameOver();
-			console.log("gameover");
-			return
-		}
+
     return next;
   }
+	if(q.length > 9){
+		gameOver();
+		console.log("gameover");
+		return
+	}
 }
 
-let q = [];
-let count = 0;
-let score= 0;
+
 // This function is called whenever a button is pressed
 // TODO: Add game logic
 function pressed(i) {
@@ -109,6 +110,7 @@ function gameOver() {
     // Set the overlay-element visible and update the gameover-element
 		document.getElementById('overlay').style.visibility="visible";
 		document.getElementById('gameover').innerText="Game Over Your score: "+score;
+		return
   }
 
   // generate random integer within range min - max
