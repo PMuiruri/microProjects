@@ -3,6 +3,9 @@ let level=1;
 let q = [];
 let count = 0;
 let score= 0;
+let bestScore;
+
+document.getElementById("best").innerText= localStorage.getItem("bestScore");
 document.getElementById("level").innerText=level;
 // assign button elements in the array
 var buttons = [
@@ -57,9 +60,9 @@ function pickNext(delay)  {
     // TODO: Fix this be random and note that the same button should not be activated consecutively
 		count++;
     var next = getRandomInt(0, 2);
-		while(next==previous){
+		do{
 			next = getRandomInt(0, 2);
-		}
+		}while(next==previous);
 		console.log("Next:"+next);
 		q.push(next);
 
@@ -107,9 +110,24 @@ function gameOver() {
     // show score
     // Hint: The document already has an overlay element and an element to show the score.
 
+
+	 if(bestScore !== null){
+    	if (score > parseInt(localStorage.getItem("bestScore"))) {
+        localStorage.setItem("bestScore", score);
+			console.log(parseInt(localStorage.getItem("bestScore")));
+
+    }
+	}
+	else{
+    localStorage.setItem("bestScore", score);
+	console.log(parseInt(localStorage.getItem("bestScore")));
+
+	}
+
     // Set the overlay-element visible and update the gameover-element
 		document.getElementById('overlay').style.visibility="visible";
 		document.getElementById('gameover').innerText="Game Over Your score: "+score;
+		document.getElementById("best").innerText= localStorage.getItem("bestScore");
 		return
   }
 

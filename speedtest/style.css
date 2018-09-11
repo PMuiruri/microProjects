@@ -15,7 +15,9 @@ body {
   font-size: 24px;
   padding: 20px 20px;
 }
-
+#best{
+	margin-right: 1em;
+}
 
 #button-container {
   max-width: 1000px;
