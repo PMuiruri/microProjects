@@ -13,30 +13,61 @@ body {
   color: white;
   text-align: center;
   font-size: 24px;
-  padding: 20px 20px;
+  padding: 10px 10px;
 }
 #best{
 	margin-right: 1em;
 }
 
 #button-container {
-  max-width: 1000px;
+	display: grid;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 
 .button {
-  width: 300px;
-  height: 300px;
+  width: 220px;
+  height: 220px;
   background-color: black;
+	grid-template-columns: auto auto auto;
+	grid-auto-rows: auto auto auto;
   color: white;
   float: left;
-  font-size: 200px;
-  margin: 15px 15px;
-  padding: 10px 0px;
+  font-size: 140px;
+  margin: 2px 2px;
+  padding: 5px 0px;
   text-align: center;
+	transition: all .70s ease;
   border-radius: 50%;
   cursor: pointer;
+}
+#button0{
+	grid-row-start: 1;
+	grid-column-start: 2;
+	background-color: blue;
+}
+#button1{
+	grid-row-start: 2;
+	grid-column-start: 1;
+	background-color: green;
+}
+#button2{
+	grid-row-start: 2;
+	grid-column-start: 3;
+	background-color: purple;
+}
+#button3{
+	grid-row-start: 3;
+	grid-column-start: 2;
+	background-color: yellow;
+}
+
+.playing {
+  transform: scale(1.1);
+	border: 10px solid;
+  border-color: black;
+  box-shadow: 0 0 1rem white;
 }
 
 #overlay {

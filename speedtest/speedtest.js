@@ -11,13 +11,33 @@ document.getElementById("level").innerText=level;
 var buttons = [
   document.getElementById('button0'),
   document.getElementById('button1'),
-  document.getElementById('button2')
+  document.getElementById('button2'),
+	document.getElementById('button3')
 ];
 
 // click event handlers for buttons
 buttons[0].onclick = function() { pressed(0) };
 buttons[1].onclick = function() { pressed(1) };
 buttons[2].onclick = function() { pressed(2) };
+buttons[3].onclick = function() { pressed(3) };
+
+window.addEventListener('keydown', function(e){
+	let keyPressed= e.keyCode;
+
+	if(keyPressed === 38){
+		pressed(0);
+	}
+	if(keyPressed === 39){
+		pressed(1);
+	}
+	if(keyPressed === 37){
+		pressed(2);
+	}
+	if(keyPressed === 40){
+		pressed(3);
+	}
+	console.log("KEYPRESSED "+e.keyCode);
+});
 
 // current active button
 var current = 0;
@@ -35,8 +55,9 @@ function pickNext(delay)  {
   var next = pickNew(current);
 
   // update the colours of the buttons: restore the previous active to black, the next one red
-  buttons[current].style.backgroundColor = "black"; // previous
-  buttons[next].style.backgroundColor = "red"; // next
+  buttons[current].style.backgroundColor = "";
+	// previous
+  buttons[next].style.backgroundColor = "black"; // next
 
   // change the active button
   current = next;
@@ -46,7 +67,7 @@ function pickNext(delay)  {
 
 		if(count>5){
 			level++;
-			delay = delay-200;
+			delay = delay-100;
 			count= 0;
 			console.log("delay: "+delay);
 			document.getElementById("level").innerText =level;
@@ -82,7 +103,16 @@ function pickNext(delay)  {
 // This function is called whenever a button is pressed
 // TODO: Add game logic
 function pressed(i) {
+	let button=buttons[i];
   console.log("Pressed:", i);
+	button.classList.add('playing');
+
+	function revertStyle(){
+			button.classList.remove('playing');
+	}
+
+	button.addEventListener('transitionend', revertStyle);
+
 
 	if(i!=q[0]){
 		console.log("try again");
@@ -102,7 +132,7 @@ function pressed(i) {
 function gameOver() {
     clearTimeout(timer); // stop timer
 		q = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
       buttons[i].style.backgroundColor = "red"; // set all buttons red
       buttons[i].onclick = null; // disable click event handlers
     }
