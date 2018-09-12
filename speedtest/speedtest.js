@@ -65,7 +65,7 @@ function pickNext(delay)  {
   // set timer to pick the next button
   // TODO: make the pace increase steadily!
 
-		if(count>5){
+		if(count>2){
 			level++;
 			delay = delay-100;
 			count= 0;
@@ -80,9 +80,9 @@ function pickNext(delay)  {
     // This is just to demonstrate how the engine works
     // TODO: Fix this be random and note that the same button should not be activated consecutively
 		count++;
-    var next = getRandomInt(0, 2);
+    var next;
 		do{
-			next = getRandomInt(0, 2);
+			next = getRandomInt(0, 3);
 		}while(next==previous);
 		console.log("Next:"+next);
 		q.push(next);
@@ -115,7 +115,7 @@ function pressed(i) {
 
 
 	if(i!=q[0]){
-		console.log("try again");
+		gameOver();
 		return
 	}
 	else{
@@ -145,15 +145,13 @@ function gameOver() {
     	if (score > parseInt(localStorage.getItem("bestScore"))) {
         localStorage.setItem("bestScore", score);
 			console.log(parseInt(localStorage.getItem("bestScore")));
+			}
+		else{
+    
+		console.log(parseInt(localStorage.getItem("bestScore")));
 
-    }
+		}
 	}
-	else{
-    localStorage.setItem("bestScore", score);
-	console.log(parseInt(localStorage.getItem("bestScore")));
-
-	}
-
     // Set the overlay-element visible and update the gameover-element
 		document.getElementById('overlay').style.visibility="visible";
 		document.getElementById('gameover').innerText="Game Over Your score: "+score;
