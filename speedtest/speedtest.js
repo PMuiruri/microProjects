@@ -5,7 +5,10 @@ let count = 0;
 let score= 0;
 let bestScore;
 
+
 document.getElementById("best").innerText= localStorage.getItem("bestScore");
+
+
 document.getElementById("level").innerText=level;
 // assign button elements in the array
 var buttons = [
@@ -67,7 +70,7 @@ function pickNext(delay)  {
 
 		if(count>2){
 			level++;
-			delay = delay-100;
+			delay = delay-200;
 			count= 0;
 			console.log("delay: "+delay);
 			document.getElementById("level").innerText =level;
@@ -142,16 +145,17 @@ function gameOver() {
 
 
 	 if(bestScore !== null){
-    	if (score > parseInt(localStorage.getItem("bestScore"))) {
+		 if (score > parseInt(localStorage.getItem("bestScore"))) {
         localStorage.setItem("bestScore", score);
 			console.log(parseInt(localStorage.getItem("bestScore")));
-			}
-		else{
-    
-		console.log(parseInt(localStorage.getItem("bestScore")));
-
 		}
 	}
+	else{
+
+			console.log(parseInt(localStorage.getItem("bestScore")));
+			}
+
+
     // Set the overlay-element visible and update the gameover-element
 		document.getElementById('overlay').style.visibility="visible";
 		document.getElementById('gameover').innerText="Game Over Your score: "+score;

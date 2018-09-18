@@ -23,7 +23,7 @@ body {
 	display: grid;
   max-width: 600px;
   margin: 0 auto;
-  padding: 10px 0px;
+  padding: 10px 10px;
 }
 
 .button {
@@ -37,7 +37,7 @@ body {
   color: white;
   float: left;
   font-size: 140px;
-  margin: -10px -20px;
+  margin: 0px -20px;
   padding: 5px 0px;
   text-align: center;
 	transition: all .70s ease;
