@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script type="text/javascript">
+
+	window.onload = function () {
+
+		let url ='http://gis.vantaa.fi/rest/tyopaikat/v1';
+
+		fetch(url)
+		.then (function(res){
+			if(!res.ok){
+				throw Error(res.statusText);
+			}
+			return res.json()
+		})
+		.then(function(myJson) {
+			draw(myJson)
+		})
+		.catch(function(err){
+			console.log('Looks like there was a problem: '+err);
+		});
+
+		function draw(mydata){
+			let arr = mydata;
+			console.log(arr);
+			var	mylables = [];
+			var jobNum = [];
+
+			for (let key of arr) {
+				//console.log(key.ammattiala);
+				mylables.push(key.ammattiala);
+				jobNum.push({label: key.ammattiala, y: parseInt(key.lukumäärä)});
+			}
+			console.log(mylables);
+			console.log(jobNum);
+
+			var chart = new CanvasJS.Chart("chartContainer", {
+				title:{
+					text: "Vacanies in Vantaa"
+				},
+				data: [
+					{
+						// Change type to "doughnut", "line", "splineArea", etc.
+						type: "column",
+						dataPoints: jobNum
+					}
+				]
+			});
+			chart.render();
+		}
+
+	}
+</script>
+</head>
+<body>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</body>
+</html>
