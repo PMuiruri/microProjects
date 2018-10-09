@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+	type="text/javascript" charset="utf-8"></script>
+	<script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+	type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+
+
+	<title>Vantaa Job Listing</title>
+</head>
+<body>
+	<h1>JOB LISTINGS VANTAA CITY</h1>
+	<div class="main">
+		<h2>Statistics</h2>
+		<div id="stats"></div>
+		<canvas id="myCanvas" style="background: white;"></canvas>
+	</div>
+	<div id="search">
+		<label for="select">Area of Expertise</label>
+		<select id="searchMenu" onchange="joblocation()"></select>
+		<div id="img"></div>
+	</div>
+	<div class="main">
+		<div class="result">
+		<div id="results"></div></div>
+		<div style="width: 640px; height: 480px" id="mapContainer"></div>
+	</div>
+
+	<script src="index.js"></script>
+
+</body>
+</html>
