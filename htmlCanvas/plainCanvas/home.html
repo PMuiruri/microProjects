@@ -19,19 +19,17 @@
 </head>
 <body>
 	<h1>JOB LISTINGS VANTAA CITY</h1>
-	<div class="main">
-		<h2>Statistics</h2>
-		<div id="stats"></div>
-		<canvas id="myCanvas" style="background: white;"></canvas>
-	</div>
 	<div id="search">
-		<label for="select">Area of Expertise</label>
+		<h2>Open Positions</h2>
 		<select id="searchMenu" onchange="joblocation()"></select>
-		<div id="img"></div>
+		<button class="btn" onclick="joblocation()">Search</button>
+		<button class="btn" onclick="draw(jobNum)">Statistics</button>
 	</div>
 	<div class="main">
-		<div class="result">
-		<div id="results"></div></div>
+		<div id="stats"></div>
+	</div>
+	<div class="main">
+		<div id="results"></div>
 		<div style="width: 640px; height: 480px" id="mapContainer"></div>
 	</div>
 

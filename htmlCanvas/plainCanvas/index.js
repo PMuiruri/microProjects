@@ -1,9 +1,10 @@
 'use strict';
 
 let url ='http://gis.vantaa.fi/rest/tyopaikat/v1';
-
 var arr = [];
+var jobNum = [];
 var markerAdded = false;
+var result = document.getElementById("results");
 
 async function fetchVacancies(URL) {
 	try {
@@ -19,9 +20,7 @@ async function fetchVacancies(URL) {
 function getObject(mydata){
 	arr = mydata;
 	console.log(arr);
-
 	var	links = [];
-	var jobNum = [];
 	var category = [];
 
 	for (let key of arr) {
@@ -32,6 +31,8 @@ function getObject(mydata){
 	jobNum.shift();
 	category.shift();
 	links.shift();
+	links.unshift("");
+	category.unshift("Please select an Area of Expertise");
 
 	var select = document.getElementById("searchMenu");
 	for (var i = 0; i < category.length; i++) {
@@ -40,14 +41,14 @@ function getObject(mydata){
 		option.text = category[i];
 		select.appendChild(option);
 	}
-
-	draw(jobNum);
-	// window.addEventListener(onselect, getLocation());
 }
 
 function draw(jobNum){
+	console.log(jobNum);
+		document.getElementById('results').innerHTML ="";
+		document.getElementById('mapContainer').style.visibility="hidden";
 
-	var myCanvas = document.getElementById("myCanvas");
+	var myCanvas = document.createElement('canvas');
 	myCanvas.width = 300;
 	myCanvas.height = 300;
 
@@ -151,12 +152,11 @@ function draw(jobNum){
 			colors:["blue"]
 		}
 	);
-
-	myBarchart.draw();
+	 myBarchart.draw();
+		results.appendChild(myCanvas);
 }
 
 function joblocation(){
-	console.log("here");
 	let urloption = document.querySelector('select').value;
 	console.log(urloption);
 	fetchLocation(urloption);
@@ -174,28 +174,25 @@ async function fetchLocation(URL) {
 }
 
 function getLocation(mydata){
-
 	document.getElementById('results').innerHTML ="";
-
 	arr = mydata;
 	console.log(arr);
 
 	var latt=[];
 	var long=[];
 
-
-
 	for (let key of arr) {
 		latt.push(key.x);
 		long.push(key.y);
 	}
-
-
-			for (let i =0; i<latt.length; i++){
+	for (let i =0; i<latt.length; i++){
 			 addMarkers(latt[i], long[i]);
 		}
+		getResults(arr);
+	}
 
-	var result = document.getElementById("results");
+	function getResults(arr){
+
 	var myDiv = document.createElement("div");
 	myDiv.setAttribute("id", "myDiv");
 	var list = document.createElement("ul");
@@ -223,6 +220,8 @@ function getLocation(mydata){
 	bigDiv.appendChild(myDiv);
 	result.appendChild(bigDiv);
 
+
+
 }
 var mapMarker;
 function removeMakers(){
@@ -233,9 +232,11 @@ function addMarkers(x, y){
 	console.log(x, y);
 	mapMarker = new H.map.Marker({lat: y, lng: x});
 	map.addObject(mapMarker);
+	document.getElementById('mapContainer').style.visibility = "visible";
 }
 
 fetchVacancies(url);
+
 
 var platform = new H.service.Platform({
 	'app_id': 'lBJR494UlxJjWsZJ4kBx',
