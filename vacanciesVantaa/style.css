@@ -1,0 +1,55 @@
+*{
+	box-sizing: border-box;
+}
+body{
+	margin: 10% 15%;
+	font-family: 'Tajawal', sans-serif;
+	margin: 5px;
+	padding: 5%;
+}
+#chart-div{
+	width: 1000px;
+	height: 1300px;
+	visibility: hidden;
+}
+h1{
+	text-align: center;
+	padding: 10px;
+	margin: 10px auto;
+}
+.main {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-left: 10px;
+	padding: 20px 10px;
+}
+
+#search{
+	text-align: center;
+}
+#mapContainer{
+	float: right;
+	right: 0;
+}
+select{
+	font-size: 1em;
+	padding: 10px 10px;
+	border: 2px solid black;
+	margin-right:  -1px;
+}
+button{
+	font-size: 1em;
+	padding: 10px 15px;
+	border: 2px solid black;
+	margin: -1px;
+}
+#myDiv{
+	border-bottom: 2px solid blue;
+	margin-bottom: 5%;
+}
+#mapContainer{
+	visibility: hidden;
+}
+ul{
+	list-style: none;
+}

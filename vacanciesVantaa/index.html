@@ -4,12 +4,40 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Vanta City Vacanies Statistics</title>
+	<!-- load maps -->
+	<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+	type="text/javascript" charset="utf-8"></script>
+	<script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+	type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="style.css">
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+	<!-- load chartjs -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Vanta City Job Listings</title>
 </head>
 <body>
-<canvas id="myCanvas" height="400" width="400">
+
+	<h1>JOB LISTINGS VANTAA CITY</h1>
+	<div id="search">
+		<h2>Open Positions</h2>
+		<select id="searchMenu"></select>
+		<button class="btn" onclick="fetchLocation()">Search</button>
+		<button class="btn" onclick="draw(jobNum, mylabels)">Statistics</button>
+	</div>
+	<div class="main">
+		<div id="stats"></div>
+		<!-- <div id="chart-div">
+			<canvas id="myCanvas"></canvas>
+		</div> -->
+	</div>
+	<div class="main">
+		<div id="results"></div>
+		<div style="width: 640px; height: 480px" id="mapContainer"></div>
+	</div>
 <script src="index.js"></script>
 </body>
 </html>
