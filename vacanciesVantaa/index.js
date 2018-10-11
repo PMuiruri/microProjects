@@ -67,7 +67,7 @@ function draw(jobNum, mylabels){
 		data: {
 			labels: mylabels,
 			datasets: [{
-				label: 'All vacancies',
+				label: 'All vacancies (Left Axis)',
 				yAxisID: 'A',
 				data: [all],
 				backgroundColor: 'blue',

@@ -5,7 +5,7 @@ body{
 	margin: 10% 15%;
 	font-family: 'Tajawal', sans-serif;
 	margin: 5px;
-	padding: 5%;
+	padding: 1%;
 }
 #chart-div{
 	width: 1000px;
@@ -20,8 +20,8 @@ h1{
 .main {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	margin-left: 10px;
-	padding: 20px 10px;
+	grid-column-gap: 20px;
+	padding: 5px 5px;
 }
 
 #search{
@@ -47,9 +47,19 @@ button{
 	border-bottom: 2px solid blue;
 	margin-bottom: 5%;
 }
+#bigDiv{
+	overflow: scroll;
+}
 #mapContainer{
 	visibility: hidden;
 }
 ul{
 	list-style: none;
+	overflow: scroll;
+	overflow-x: hidden;
+	height: 480px;
+	width: 640px;
+}
+scrollbar {
+
 }
