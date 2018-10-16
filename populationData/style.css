@@ -1,0 +1,23 @@
+*{
+	margin: 0.5%;
+	background-color: black;
+	color: white;
+	font-family: monospace;
+}
+h1{
+	text-align: center;
+
+}
+.main{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	max-width: 640px;
+	max-height: 680px;
+	margin: 1%;
+	grid-column-gap: 10%;
+	grid-row-gap: 10%;
+}
+canvas{
+	padding: 2%;
+	border: 2px solid white;
+}
