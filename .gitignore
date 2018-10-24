@@ -1,8 +1,4 @@
-*.png
-*.gif
-*.jpg
-*.jpeg
-*.json
+
 
 # dependencies
 /node_modules
