@@ -20,13 +20,13 @@
 	<title>Vanta City Job Listings</title>
 </head>
 <body>
-
-	<h1>JOB LISTINGS VANTAA CITY</h1>
+	<div class="image">
+	<div class="container">
+			<button class="btn" onclick="draw(jobNum, mylabels, allv)">Home</button>
 	<div id="search">
-		<h2>Open Positions</h2>
-		<select id="searchMenu"></select>
-		<button class="btn" onclick="fetchLocation()">Search</button>
-		<button class="btn" onclick="draw(jobNum, mylabels)">Statistics</button>
+		<h1>JOB LISTINGS VANTAA CITY</h1>
+		<h2>Search For Open Positions</h2>
+		<select id="searchMenu" onchange="fetchLocation()"></select>
 	</div>
 	<div class="main">
 		<div id="stats"></div>
@@ -35,6 +35,8 @@
 		<div id="results"></div>
 		<div style="width: 640px; height: 480px" id="mapContainer"></div>
 	</div>
-<script src="index.js"></script>
+	</div>
+	</div>
+<script src="vantaa.js"></script>
 </body>
 </html>

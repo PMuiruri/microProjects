@@ -2,34 +2,48 @@
 	box-sizing: border-box;
 }
 body{
-	margin: 10% 15%;
+	margin:0;
 	font-family: 'Tajawal', sans-serif;
-	margin: 5px;
-	padding: 1%;
+	border-bottom: solid blue 20px;
+}
+
+.image{
+	background-image: url("./vantaa.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	opacity: 0.9;
+}
+.container{
+	margin: auto;
+	padding: 2%;
 }
 #chart-div{
-	width: 1000px;
-	height: 1300px;
+	width: 900px;
+	height: 570px;
 	visibility: hidden;
+	margin-left: 20%
 }
 h1{
 	text-align: center;
-	padding: 10px;
-	margin: 10px auto;
+	margin: auto;
 }
 .main {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 20px;
 	padding: 5px 5px;
+	margin: auto;
 }
 
 #search{
 	text-align: center;
+	display: block;
+	opacity: 1;
 }
 #mapContainer{
 	float: right;
 	right: 0;
+	box-shadow: 5px 10px 18px #888888;
 }
 select{
 	font-size: 1em;
@@ -38,20 +52,24 @@ select{
 	margin-right:  -1px;
 }
 button{
-	font-size: 1em;
-	padding: 10px 15px;
-	border: 2px solid black;
-	margin: -1px;
+	float: right;
+	font-size: 1.2em;
+	padding: 10px 5px;
+	border: none;
+	margin-right: 10px;
+	background-color: white;
+
 }
 #myDiv{
 	border-bottom: 2px solid blue;
 	margin-bottom: 5%;
 }
-#bigDiv{
+/* #bigDiv{
 	overflow: scroll;
-}
+} */
 #mapContainer{
 	visibility: hidden;
+	box-shadow: 5px 10px 18px #888888;
 }
 ul{
 	list-style: none;
@@ -59,7 +77,6 @@ ul{
 	overflow-x: hidden;
 	height: 480px;
 	width: 640px;
-}
-scrollbar {
-
+	padding: 1%;
+	box-shadow: 5px 10px 18px #888888;
 }

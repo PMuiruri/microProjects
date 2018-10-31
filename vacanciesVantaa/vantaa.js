@@ -2,9 +2,11 @@
 //Declare varibales
 var arr = [];
 var jobNum =[];
+var allv;
 var	mylabels = [];
+var markerAdded = false;
+var markerArray = [];
 var result = document.getElementById("results");
-
 
 //Fetch the job lisiting data
 async function fetchVacancies() {
@@ -18,6 +20,7 @@ async function fetchVacancies() {
 		throw Error(e);
 	}
 }
+
 function getObject(mydata){
 	arr = mydata;
 	console.log(arr);
@@ -31,6 +34,8 @@ function getObject(mydata){
 		jobNum.push(key.lukumäärä);
 	}
 	console.log(jobNum);
+	allv =jobNum.shift();
+	mylabels.shift();
 	category.shift();
 	links.shift();
 	links.unshift(null);
@@ -44,18 +49,14 @@ function getObject(mydata){
 		select.appendChild(option);
 		console.log(option.value);
 	}
+	draw(jobNum, mylabels,allv);
 }
 
-function draw(jobNum, mylabels){
+function draw(jobNum, mylabels, allv){
 	//Empty the results container
 	document.getElementById('results').innerHTML ="";
 	document.getElementById('mapContainer').style.visibility="hidden";
-
-	//Remove the first element in the array which is for all available jobs
-	var all =jobNum.shift();
-	mylabels.shift();
-	console.log(mylabels);
-	console.log(jobNum);
+	console.log(allv);
 
 	//draw the chart using chartjs
 	var chartDiv = document.createElement('div');
@@ -67,9 +68,9 @@ function draw(jobNum, mylabels){
 		data: {
 			labels: mylabels,
 			datasets: [{
-				label: 'All vacancies (Left Axis)',
+				label: 'Total Number of Vacancies (Left Axis)',
 				yAxisID: 'A',
-				data: [all],
+				data: [allv],
 				backgroundColor: 'blue',
 				borderWidth:2,
 				borderColor:'black'
@@ -132,6 +133,10 @@ function getLocation(mydata){
 		latt.push(key.x);
 		long.push(key.y);
 	}
+	if(markerAdded == true){
+		removeMakers();
+		markerAdded = false;
+	}
 	for (let i =0; i<latt.length; i++){
 		addMarkers(latt[i], long[i]);
 	}
@@ -168,15 +173,17 @@ function getResults(arr){
 
 var mapMarker;
 function removeMakers(){
-	map.removeObjects(mapMarker);
+	myMap.removeObjects(markerArray);
+	markerArray.length = 0;
 }
 
 function addMarkers(x, y){
-	console.log(x, y);
+
 	mapMarker = new H.map.Marker({lat: y, lng: x});
-	map.addObject(mapMarker);
+	myMap.addObject(mapMarker);
+	markerArray.push(mapMarker);
 	document.getElementById('mapContainer').style.visibility = "visible";
-	console.log("here");
+	markerAdded = true;
 }
 
 var platform = new H.service.Platform({
@@ -188,7 +195,7 @@ var targetElement = document.getElementById('mapContainer');
 var maptypes = platform.createDefaultLayers();
 
 // Instantiate (and display) a map object:
-var map = new H.Map(
+var myMap = new H.Map(
 	document.getElementById('mapContainer'),
 	maptypes.normal.map,
 	{
