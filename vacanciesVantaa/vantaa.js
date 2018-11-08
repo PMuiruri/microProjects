@@ -10,7 +10,7 @@ var result = document.getElementById("results");
 
 //Fetch the job lisiting data
 async function fetchVacancies() {
-	let url ='http://gis.vantaa.fi/rest/tyopaikat/v1';
+	let url ='https://gis.vantaa.fi/rest/tyopaikat/v1';
 	try {
 		const fetchResult = fetch(url)
 		const response = await fetchResult;
@@ -44,7 +44,7 @@ function getObject(mydata){
 	var select = document.getElementById("searchMenu");
 	for (var i = 0; i < category.length; i++) {
 		var option = document.createElement("option");
-		option.value = links[i];
+		option.value = category[i];
 		option.text = category[i];
 		select.appendChild(option);
 		console.log(option.value);
@@ -110,7 +110,9 @@ function draw(jobNum, mylabels, allv){
 }
 
 async function fetchLocation() {
-	let url = document.getElementById('searchMenu').value;
+
+	console.log(`https://gis.vantaa.fi/rest/tyopaikat/v1/${document.getElementById('searchMenu').value}`);
+	let url = `https://gis.vantaa.fi/rest/tyopaikat/v1/${document.getElementById('searchMenu').value}`;
 
 	try {
 		const fetchResult = fetch(url)
@@ -187,8 +189,10 @@ function addMarkers(x, y){
 }
 
 var platform = new H.service.Platform({
+	useCIT: true,
 	'app_id': 'lBJR494UlxJjWsZJ4kBx',
-	'app_code': 'hxNbVETPZ51Oa9ReO6Lgwg'
+	'app_code': 'hxNbVETPZ51Oa9ReO6Lgwg',
+	useHTTPS: true
 });
 var targetElement = document.getElementById('mapContainer');
 // Obtain the default map types from the platform object
